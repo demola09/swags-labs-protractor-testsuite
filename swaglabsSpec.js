@@ -103,14 +103,27 @@ describe ('Swag Labs tests', () => {
     });
 
     // BONUS tests! Not required for the automation challenge, but do these if you can.
-    it('sort the inventory items by price, high-to-low', async () => {
+        it('sort the inventory items by price, high-to-low', async () => {​
+        const unsortedPrices = element.all(by.xpath('//*[@class="inventory_item_price"]'));
+        var filterButton = element(by.xpath('//*[@class="select_container"]'));
+        await filterButton.click();
+        var sortingOption = element(by.xpath("//option[contains(text(),'Price (low to high)')]"));
+        await sortingOption.click();
+        const sortedPrices = element.all(by.xpath('//*[@class="inventory_item_price"]'));
 
-        
+        expect(sortedPrices).toEqual(unsortedPrices);
+        }​);
+    
+        it('sort the inventory items by name, Z-to-A', async () => {​
+        const unsortedName = element.all(by.xpath('//*[@class="inventory_item_price"]'));
+        var filterButton = element(by.xpath('//*[@class="select_container"]'));
+        await filterButton.click();
+        var sortingOption = element(by.xpath("//option[contains(text(),'Name (Z to A)')]"));
+        await sortingOption.click();
+        const sortedName = element.all(by.xpath('//*[@class="inventory_item_price"]'));
 
-    });
-
-    it('sort the inventory items by name, Z-to-A', async () => {
-    });
+        expect(sortedName).toEqual(unsortedName);
+        }​);
 
 
 })
